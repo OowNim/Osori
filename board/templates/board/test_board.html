@@ -1,13 +1,13 @@
 {% extends 'board/base_table.html' %}
 {% block articled %}
-<div>
+<div class = "tTitle">
     <h1><a href="">TEST BOARD</a></h1>
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
     <a href="{% url 'article_new' %}" class="top-menu">new post</a>
-{% endif %}
+    {% endif %}
 </div>
 
-<table border = "1">
+<table border = "1" class = "tboard">
 	<tr>
 		<th>글 번호</th>
 		<th>제목</th>
@@ -16,22 +16,22 @@
 		<th>조회수</th>
 		<th>댓글 수</th>
 	</tr>
-{% for article in articles %}
-	<tr>
-		<td>{{ article.pk }}
+    {% for article in articles %}
+    <tr>
+      <td>{{ article.pk }}
         <td><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></td>
         <td>{{ article.created_date }}</td>	
         <td>{{ article.author }}</td>
         <td>{{ article.view_count }}</td>
         <td>{{ article.comments.count }}</td>
     </div>
-{% endfor %}
+    {% endfor %}
 </table>
 
 <div class="pagination">
     <span class="step-links">
         {% if articles.has_previous %}
-            <a href="?page={{ articles.previous_page_number }}">previous</a>
+        <a href="?page={{ articles.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
@@ -39,7 +39,7 @@
         </span>
 
         {% if articles.has_next %}
-            <a href="?page={{ articles.next_page_number }}">next</a>
+        <a href="?page={{ articles.next_page_number }}">next</a>
         {% endif %}
     </span>
 </div>
