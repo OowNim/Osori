@@ -1,3 +1,8 @@
+#all_body{
+	margin-left : 8%;
+	margin-right : 8%;
+}
+
 .dongmoon{
 	position : absolute;
 	width : 100%;
@@ -8,7 +13,7 @@
 	right : 0;
 	top : 0;
 	text-align : center;
-	background-color : #00994C;
+	background-color : #64C16D;
 	color : white;
 }
 
@@ -73,7 +78,7 @@
 	margin-right : 15%;
 }
 .tboard th{
-	background-color:#FF92B1;
+	background-color:#64C16D;
 	color: #fff;
 	height : 40px;
 }
@@ -81,10 +86,10 @@
 	height : 30px;
 }
 .tboard tr:nth-child(even){
-	background-color:#FFF6FE;
+	background-color:#F3FFF4;
 }
 .tboard tr:nth-child(odd){
-	background-color:#FF92B1;
+	background-color:#64C16D;
 }
 
 a{
@@ -93,6 +98,13 @@ a{
 a:hover{
 	color : orange;
 }
+
+.pagination {
+	position : relative;
+	text-align : center;
+	margin-top : 30px;
+}
+
 .dropdown1 {
     position: relative;
     display: inline-block;
@@ -157,5 +169,5 @@ a:hover{
 	margin:auto;
 	padding-top : 10px;
 	padding-bottom : 20px;
-	background-color : #C0C0C0;
+	background-color : #DEFFE1;
 }

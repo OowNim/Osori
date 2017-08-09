@@ -28,8 +28,17 @@ def article_table(request):
 
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
-    article.view_count += 1
-    article.save()
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = article
+            comment.save()
+            return redirect('article_detail', pk=article.pk)
+    else:
+        form = CommentForm()
+        article.view_count += 1
+        article.save()
     return render(request, 'board/article_detail.html', {'article' : article})
 
 @login_required
