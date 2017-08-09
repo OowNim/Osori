@@ -2,7 +2,7 @@
 {% block content %}
 <div class = "tTitle">
     <h1><a href="">TEST BOARD</a></h1>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated%}
     <a href="{% url 'article_new' %}" class="tTitleMenu"><span class = "glyphicon glyphicon-pencil">New Post</span></a>
     {% endif %}
 </div>

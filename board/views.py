@@ -73,7 +73,7 @@ def article_new(request):
 @login_required
 def article_edit(request, pk):
     article = get_object_or_404(Article, pk=pk)
-    if request.method == "POST" and request.user == article.user:
+    if request.method == "POST":
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
             article = form.save(commit=False)
@@ -87,8 +87,7 @@ def article_edit(request, pk):
 @login_required
 def article_remove(request, pk):
     article = get_object_or_404(Article, pk=pk)
-    if request.user == article.user:
-        article.delete()
+    article.delete()
     return redirect('article_table')
 
 def add_comment_to_article(request, pk):

@@ -4,7 +4,7 @@
 
 {% with articles.1 as article %}
 <div class = "article_menu">
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and request.user == article.author%}
     <a class="btn btn-default" href="{% url 'article_edit' pk=article.pk %}">Edit</a>
     <a class="btn btn-default" href="{% url 'article_remove' pk=article.pk %}">Remove</a>
     {% endif %}
