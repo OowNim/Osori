@@ -1,26 +1,46 @@
-#all_body{
-	margin-left : 8%;
-	margin-right : 8%;
+html {
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.dongmoon{
-	position : absolute;
-	width : 100%;
-	padding-top : 10px;
-	padding-bottom : 5px;
-	margin : auto;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body{
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  padding-top : 2rem;
+  min-height: 100%;
+}
+
+#all_body{
 	left : 0;
 	right : 0;
+	bottom : 0;
 	top : 0;
-	text-align : center;
-	background-color : #64C16D;
-	color : white;
+}
+/* 
+	Base
+*/
+
+.dongmoon{
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: #efefef;
+	text-align: center;
 }
 
 .dongmoon .check{
 	position : inherit;
 	padding-left : 10px;
-	color : white;
+	color : green;
 	font-weight: bold;
 	margin-right:100px;
 }
@@ -33,12 +53,6 @@
 	float:right;
 	margin-top : 10px;
 	padding-top : 20px;
-	margin-right : 50px;
-}
-
-.left_nav{
-	float:left;
-	margin-right: 100px;
 }
 
 .topnav{
@@ -60,19 +74,54 @@
 	margin-left:20px;
 }
 
+header{
+	margin-left : 8%;
+	margin-right : 8%;
+}
 #container{
 	text-align : center;
+	margin-left : 8%;
+	margin-right : 8%;
 }
 
-.tTitle{
-	clear:left;
-	margin-left : 50px;
+footer{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: #efefef;
+	text-align: center;
 }
+.copyright{	
+	text-align : center;
+	position : relative;
+	padding-top : 10px;
+	padding-bottom : 20px;
+}
+
+/* 
+	Article_Table
+*/
+.tTitle{
+	margin-left : 10%;
+}
+
+.tTitle .tTitleMenu{
+	float : right;
+	margin-right : 10%;
+	margin-bottom : 30px;
+}
+
+.tTitle a{
+	color : black;
+}
+
 .tboard{
 	border-collapse : collapse;
 	border : 1px solid #ddd;
 	text-align : center;
-	clear: left;
+	clear: right;
 	width : 70%;
 	margin-left : 15%;
 	margin-right : 15%;
@@ -89,7 +138,7 @@
 	background-color:#F3FFF4;
 }
 .tboard tr:nth-child(odd){
-	background-color:#64C16D;
+	background-color:#ACF2B3;
 }
 
 a{
@@ -103,6 +152,10 @@ a:hover{
 	position : relative;
 	text-align : center;
 	margin-top : 30px;
+}
+
+.drop:hover {
+	cursor : pointer;
 }
 
 .dropdown1 {
@@ -145,6 +198,7 @@ a:hover{
 }
 .smenu:hover {
 	color: blue;
+	cursor : pointer;
 }
 #dpTime{
 	border-style:none;
@@ -160,14 +214,45 @@ a:hover{
 	z-index:0;
 }
 
-.copyright{	
+
+/* 
+	Article_Detail
+*/
+
+.articleT{
+	border-collapse : collapse;
+	border : 1px solid #ddd;
 	text-align : center;
-	position : fixed;
-	left: 0;
-	right : 0;
-	bottom : 0;
-	margin:auto;
-	padding-top : 10px;
-	padding-bottom : 20px;
-	background-color : #DEFFE1;
+	clear: left;
+	width : 70%;
+	margin-left : 15%;
+	margin-right : 15%;
+}
+
+.articleT .articleText{
+	height : 500px;
+	vertical-align : top;
+	text-align : left;
+	padding : 10px 10px 10px 10px;
+}
+
+.articleT th{
+	background-color : #64C16D;
+	color : white;
+	height : 35px;
+}
+
+.article_menu{
+	text-align : right;
+	margin-right : 10%;
+	margin-bottom : 20px;
+}
+
+.article_menu a{
+	color : black;
+}
+
+.comment{
+	margin-left : 8%;
+	margin-top : 40px;
 }

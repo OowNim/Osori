@@ -1,12 +1,15 @@
-{% extends 'board/base_table.html' %}
+{% extends 'board/base.html' %}
 
-{% block articled %}
+{% block content %}
 
-{% if user.is_authenticated %}
-<a class="btn btn-default" href="{% url 'article_edit' pk=article.pk %}">edit</a>
-<a class="btn btn-default" href="{% url 'article_remove' pk=article.pk %}">remove</a>
-{% endif %}
-<table border = "1">
+{% with articles.1 as article %}
+<div class = "article_menu">
+    {% if user.is_authenticated %}
+    <a class="btn btn-default" href="{% url 'article_edit' pk=article.pk %}">Edit</a>
+    <a class="btn btn-default" href="{% url 'article_remove' pk=article.pk %}">Remove</a>
+    {% endif %}
+</div>
+<table border = "1" class = "articleT">    
     <tr>
         <th> 제목 </th>
         <td colspan = "5"> {{ article.title }}</td>
@@ -20,29 +23,43 @@
         <th> 조회수 </th>
         <td> {{ article.view_count }}</td>
     </tr>
-
     <tr>
-        <td colspan = "6"> {{ article.text|linebreaksbr}}</td>
+        <td colspan = "6" class = "articleText"> {{ article.text|linebreaksbr}}</td>
     </tr>
 
+{% endwith %}
+    {% with articles|first as article %}
+    {% if article != 0 %}
     <tr>
-        <th> 이전글 </th>
-        <td> <a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></td>
+        <th> 다음 글 </th>
+        <td colspan = "5"> <a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></td>
     </tr>
+    {% endif %}
+    {% endwith %}
+    {% with articles.2 as article %}
+    {% if article != 0 %}
+    <tr>
+        <th> 이전 글 </th>
+        <td colspan = "5"> <a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></td>
+    </tr>
+    {% endif %}
+    {% endwith %}
 </table>
 
-{% if user.is_authenticated %}
-
-<form method="POST" class="post-form">{% csrf_token %}
-    <input value = "{{ request.user }}" name = "author" hidden>    
-    <input type = "text" name = "text" class = "commentInput">
-    <button type="submit" class="save btn btn-default">Submit</button>
-</form>
-
-{% endif %}
-
-{% for comment in article.comments.all %}
 <div class="comment">
+    {% if user.is_authenticated %}
+
+    <form method="POST" class="post-form">{% csrf_token %}
+        <input value = "{{ request.user }}" name = "author" hidden>    
+        <input type = "text" name = "text" class = "commentInput">
+        <button type="submit" class="save btn btn-default">Submit</button>
+    </form>
+
+    {% endif %}
+
+    {% with articles.1 as article %}
+    {% for comment in article.comments.all %}
+
     <div class="date">{{ comment.created_date }}</div>
     <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">remove</a>
     <strong>{{ comment.author }}</strong>
@@ -50,5 +67,6 @@
 </div>
 {% empty %}
 <p>No comments here yet :) </p>
-{% endfor %}    
-{% endblock articled %}
+{% endfor %} 
+{% endwith %}   
+{% endblock content %}

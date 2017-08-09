@@ -12,7 +12,7 @@ def article_index(request):
 
 def article_table(request):
     posts = Article.objects.filter(created_date__lte=timezone.now()).order_by('-created_date')
-    paginator = Paginator(posts, 1) # Show 25 articles per page
+    paginator = Paginator(posts, 10) # Show 25 articles per page
 
     page = request.GET.get('page')
     try:
@@ -27,19 +27,35 @@ def article_table(request):
     return render(request, 'board/test_board.html', {'articles': articles})
 
 def article_detail(request, pk):
-    article = get_object_or_404(Article, pk=pk)
+    articleses = Article.objects.filter(created_date__lte=timezone.now()).order_by('-created_date')
+    count = articleses.count()
+    before = 0
+    now = 0
+    after = 0
+    for a in range(0, count):
+        if articleses[a].pk == int(pk):
+            break
+
+    now = articleses[a]
+    if a > 0 :
+        before = articleses[a-1]
+
+    if a != count - 1:
+        after = articleses[a+1]
+
+    articles = [before, now, after]
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.article = article
+            comment.article = now
             comment.save()
-            return redirect('article_detail', pk=article.pk)
+            return redirect('article_detail', pk=now.pk)
     else:
         form = CommentForm()
-        article.view_count += 1
-        article.save()
-    return render(request, 'board/article_detail.html', {'article' : article})
+        now.view_count += 1
+        now.save()
+    return render(request, 'board/article_detail.html', {'articles' : articles})
 
 @login_required
 def article_new(request):

@@ -12,8 +12,8 @@
 		<header>
 			<div class = "dongmoon">
 				현재시간
-				<span id="dpTime">오전 00:00:00</span>
-				동방 문은 <span class="check"> 열림</span>
+				<span id="dpTime">오전 00:00:00</span>	
+				동방 문 : <span class="check"> 열림</span>
 			</div>
 
 			<h1 class = "logo">
@@ -32,11 +32,28 @@
 		<nav class = "topnav">
 			<ul>
 				<li>동아리 소개</li>
-				<li>프로젝트 팀 내역</li>
-				<li><a href="{% url 'article_table' %}">게시판</a></li>
+
+				<li>
+					<span class="dropdown1 drop">프로젝트 팀 내역  
+						<div class="dropdown-content1">
+							<p class="smenu">진행중인 프로젝트</p>
+							<p class="smenu">완료된 프로젝트</p>
+						</div>
+					</span>
+				</li>
+
+				<li>
+					<span class="dropdown2 drop"><a href = "{% url 'article_table' %}">게시판</a>
+						<div class="dropdown-content2">
+							<p class="smenu">공지사항</p>
+							<p class="smenu">자유게시판</p>
+							<p class="smenu">정보게시판</p>
+							<p class="smenu">Q&amp;A게시판</p>
+						</div>
+					</span>
+				</li>
 				<li>사진첩</li>
 			</ul>
-
 		</nav>
 
 		<br>
@@ -48,5 +65,18 @@
 			</div>
 		</footer>
 	</div>
+	<script>
+		function printTime(){
+			 var time =new Date();
+			 var now = time.toLocaleTimeString()
+			 
+			 document.getElementById("dpTime").innerHTML = now;
+			  
+		}
+		window.onload = function() {     // 페이지가 로딩되면 실행
+			    printTime();
+		}
+		setInterval("printTime()",1000);
+	</script>
 </body>
 </html>
