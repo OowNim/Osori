@@ -12,7 +12,7 @@ def article_index(request):
 
 def article_table(request):
     posts = Article.objects.filter(created_date__lte=timezone.now()).order_by('-created_date')
-    paginator = Paginator(posts, 10) # Show 25 articles per page
+    paginator = Paginator(posts, 1) # Show 25 articles per page
 
     page = request.GET.get('page')
     try:
